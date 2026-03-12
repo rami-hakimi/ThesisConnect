@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ThesisConnect — Mockups</title>
+  <style>
+    :root{
+      --bg:#f5f6f8;
+      --card:#ffffff;
+      --text:#151a22;
+      --muted:#667085;
+      --line:#e6e8ee;
+      --blue:#2f6fed;
+      --blue-100:#eaf1ff;
+      --green:#16a34a;
+      --green-100:#eaf8ef;
+      --orange:#f59e0b;
+      --orange-100:#fff4d6;
+      --red:#dc2626;
+      --shadow: 0 10px 25px rgba(16,24,40,.08);
+      --radius:16px;
+      --radius-lg:22px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 10;
+      background: rgba(245,246,248,.82);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width: 1200px;
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:-.2px;
+    }
+    .logo{
+      width:34px;height:34px;
+      border-radius:10px;
+      background: linear-gradient(135deg, var(--blue), #7aa5ff);
+      box-shadow: 0 10px 20px rgba(47,111,237,.20);
+    }
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--card);
+      font-size:14px;
+      color:var(--muted);
+    }
+    .pill strong{ color:var(--text); font-weight:700; }
+    .btn{
+      border:1px solid var(--line);
+      background:var(--card);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:.15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn.primary{
+      background:var(--blue);
+      border-color:var(--blue);
+      color:#fff;
+    }
+
+    .wrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 260px 1fr;
+      gap:18px;
+    }
+    @media (max-width: 980px){
+      .wrap{ grid-template-columns: 1fr; }
+      .sidebar{ position: static; }
+    }
+
+    .sidebar{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+    }
+    .nav-title{
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin:6px 8px 10px;
+    }
+    .nav{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .nav button{
+      width:100%;
+      text-align:left;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid transparent;
+      background:transparent;
+      cursor:pointer;
+      font-weight:700;
+      color:var(--muted);
+      transition:.15s ease;
+    }
+    .nav button:hover{ background:#f7f8fb; color:var(--text); }
+    .nav button.active{
+      background: var(--blue-100);
+      color: var(--blue);
+      border-color: rgba(47,111,237,.18);
+    }
+
+    .main{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      min-width: 0;
+    }
+    .pagehead{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .pagehead h1{
+      margin:0;
+      font-size: 24px;
+      letter-spacing:-.3px;
+    }
+    .pagehead p{
+      margin:6px 0 0;
+      color:var(--muted);
+      line-height:1.45;
+      max-width: 62ch;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+    .tag.approved{ background: var(--green-100); color: var(--green); border-color: rgba(22,163,74,.15); }
+    .tag.flag{ background: var(--orange-100); color: #a16207; border-color: rgba(245,158,11,.20); }
+    .tag.rejected{ background:#fee2e2; color: var(--red); border-color: rgba(220,38,38,.15); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 380px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      min-width: 0;
+    }
+    .card h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:-.2px;
+    }
+    .sub{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size: 14px;
+      line-height:1.45;
+    }
+
+    .field{
+      margin-top:12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .label{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .checkbox{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background:#fff;
+      font-weight:700;
+      color:var(--text);
+      cursor:pointer;
+      user-select:none;
+    }
+    .checkbox input{ accent-color: var(--blue); }
+
+    .search{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      outline:none;
+      font-weight:700;
+      color:var(--text);
+      background:#fff;
+    }
+
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .study{
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .study-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .study-title{
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:-.2px;
+      margin:0;
+    }
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+    .stars{
+      font-family: var(--mono);
+      color:#a16207;
+      background: var(--orange-100);
+      border:1px solid rgba(245,158,11,.20);
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+    }
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:10px;
+    }
+    @media (max-width: 680px){
+      .metrics{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .metric{
+      background:#f9fafb;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding:10px 12px;
+    }
+    .metric .k{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+    }
+    .metric .v{
+      margin-top:6px;
+      font-weight:950;
+      letter-spacing:-.3px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1.35fr .9fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .split{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      background:#f9fafb;
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:-.1px;
+    }
+    .panel p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .slots{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 680px){
+      .slots{ grid-template-columns: 1fr; }
+    }
+    .slot{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      background:#fff;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .slot small{
+      color:var(--muted);
+      font-weight:800;
+    }
+    .slot.active{
+      border-color: rgba(47,111,237,.30);
+      background: var(--blue-100);
+    }
+
+    .progress{
+      height:10px;
+      background:#eef2f7;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid var(--line);
+    }
+    .bar{
+      height:100%;
+      width: 78%;
+      background: linear-gradient(90deg, var(--blue), #7aa5ff);
+    }
+
+    .table{
+      width:100%;
+      border-collapse: separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius: 18px;
+      border:1px solid var(--line);
+    }
+    .table th, .table td{
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      text-align:left;
+      font-size:14px;
+      vertical-align:top;
+    }
+    .table th{
+      background:#f9fafb;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.10em;
+      font-size:12px;
+      font-weight:900;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+
+    .screen{ display:none; }
+    .screen.active{ display:block; }
+
+    .toast{
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #101828;
+      color:#fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight:800;
+      font-size: 13px;
+      box-shadow: 0 18px 40px rgba(16,24,40,.25);
+      opacity:0;
+      pointer-events:none;
+      transition:.18s ease;
+      z-index: 50;
+    }
+    .toast.show{ opacity:1; transform: translateX(-50%) translateY(-4px); }
+    .muted{ color: var(--muted); }
+    .hr{ height:1px; background:var(--line); margin:14px 0; border-radius:999px; }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>ThesisConnect</div>
+      </div>
+
+      <div class="actions">
+        <div class="pill"><strong id="creditsVal">10</strong> Credits</div>
+        <div class="pill">Earn credits by participating • Spend credits to recruit</div>
+        <button class="btn" id="notifyBtn" type="button">🔔 Reminders</button>
+        <button class="btn primary" id="primaryBtn" type="button">+ Create Study</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="nav-title">Mockup Screens</div>
+      <nav class="nav" aria-label="Screens">
+        <button class="active" data-screen="browse">Browse & Filter</button>
+        <button data-screen="detail">Study Detail</button>
+        <button data-screen="researcher">Researcher Dashboard</button>
+        <button data-screen="faculty">Faculty Approvals</button>
+      </nav>
+
+      <div class="hr"></div>
+      <div class="nav-title">Context</div>
+      <div class="muted" style="font-size:14px; line-height:1.5; padding:0 8px 8px;">
+        University SSO + role-based access, study approval before publication, transparent workload
+        (question count + task type), scheduling + reminders, participation validation → credits,
+        accessibility tagging, reliability scoring, and QR-based presence verification.
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="screen active" id="browse">
+        <div class="pagehead">
+          <div>
+            <h1>Browse Studies</h1>
+            <p>Participants filter studies by duration, credits, faculty, rating, and task type. Study cards show an approval badge, reliability details, and workload transparency.</p>
+          </div>
+          <span class="tag approved">✓ Faculty Approved badge</span>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h2>Filters</h2>
+            <p class="sub">Advanced filtering to help participants choose reliable studies efficiently.</p>
+
+            <div class="field">
+              <div class="label">Search</div>
+              <input class="search" id="searchInput" placeholder="Search studies…" value="Memory" />
+            </div>
+
+            <div class="field">
+              <div class="label">Duration</div>
+              <div class="row">
+                <label class="checkbox"><input type="checkbox" checked> &lt; 15 min</label>
+                <label class="checkbox"><input type="checkbox" checked> 15–30 min</label>
+                <label class="checkbox"><input type="checkbox"> &gt; 30 min</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="label">Credits</div>
+              <div class="row">
+                <label class="checkbox"><input type="checkbox" checked> Any</label>
+                <label class="checkbox"><input type="checkbox"> 3+</label>
+                <label class="checkbox"><input type="checkbox"> 5+</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="label">Task type</div>
+              <div class="row">
+                <label class="checkbox"><input type="checkbox" checked> MCQ</label>
+                <label class="checkbox"><input type="checkbox" checked> Short text</label>
+                <label class="checkbox"><input type="checkbox"> Audio/Video</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="label">Rating</div>
+              <div class="row">
+                <label class="checkbox"><input type="checkbox" checked> 4★+</label>
+                <label class="checkbox"><input type="checkbox"> 3★+</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="row" style="justify-content:space-between;">
+              <div>
+                <h2>Results</h2>
+                <p class="sub">Study cards show: approval badge, credits, rating, estimated vs. average time, question count, task type, accessibility, and reliability indicators.</p>
+              </div>
+              <button class="btn primary" type="button" onclick="go('detail')">Open Detail →</button>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="list">
+              <article class="study">
+                <div class="study-top">
+                  <div>
+                    <p class="study-title">Memory & Attention Study</p>
+                    <div class="meta">
+                      <span class="tag approved">✓ Approved</span>
+                      <span class="stars">★★★★☆ (42)</span>
+                      <span>Faculty: Dr. Visser</span>
+                      <span class="pill">Reliability: 92%</span>
+                    </div>
+                  </div>
+                  <button class="btn" type="button" onclick="go('detail')">View</button>
+                </div>
+
+                <div class="metrics">
+                  <div class="metric"><div class="k">Credits</div><div class="v">3</div></div>
+                  <div class="metric"><div class="k">Estimated</div><div class="v">20 min</div></div>
+                  <div class="metric"><div class="k">Average</div><div class="v">24 min</div></div>
+                  <div class="metric"><div class="k">Task</div><div class="v">MCQ + short text</div></div>
+                </div>
+
+                <div class="panel">
+                  <h3>Transparency panel</h3>
+                  <p><strong>Question count:</strong> 35 &nbsp;•&nbsp; <strong>Task type:</strong> MCQ + short text</p>
+                  <p><strong>Accessibility:</strong> Keyboard friendly • English required</p>
+                </div>
+              </article>
+
+              <article class="study">
+                <div class="study-top">
+                  <div>
+                    <p class="study-title">Stress & Sleep Study</p>
+                    <div class="meta">
+                      <span class="tag approved">✓ Approved</span>
+                      <span class="stars">★★★☆☆ (18)</span>
+                      <span>Faculty: Dr. Visser</span>
+                      <span class="pill">Reliability: 86%</span>
+                    </div>
+                  </div>
+                  <button class="btn" type="button" onclick="toast('Open the Study Detail screen from the sidebar')">View</button>
+                </div>
+
+                <div class="metrics">
+                  <div class="metric"><div class="k">Credits</div><div class="v">5</div></div>
+                  <div class="metric"><div class="k">Estimated</div><div class="v">25 min</div></div>
+                  <div class="metric"><div class="k">Average</div><div class="v">29 min</div></div>
+                  <div class="metric"><div class="k">Task</div><div class="v">MCQ + short text</div></div>
+                </div>
+
+                <div class="panel">
+                  <h3>Transparency panel</h3>
+                  <p><strong>Question count:</strong> 50 &nbsp;•&nbsp; <strong>Task type:</strong> MCQ + short text</p>
+                  <p><strong>Accessibility:</strong> Screen-reader friendly • Quiet environment required</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="detail">
+        <div class="pagehead">
+          <div>
+            <h1>Study Detail</h1>
+            <p>Detail page prioritizes transparency: approval badge, credits, rating, reliability, question count + task type, estimated vs. average completion time, accessibility info, scheduling, QR check-in, and join button.</p>
+          </div>
+          <span class="tag approved">✓ Faculty Approved</span>
+        </div>
+
+        <div class="card">
+          <div class="row" style="justify-content:space-between; align-items:flex-start;">
+            <div>
+              <h2 style="font-size:22px; margin-top:2px;">Memory & Attention Study</h2>
+              <p class="sub">Faculty: Dr. Elena Visser &nbsp;•&nbsp; Verified students only (University SSO)</p>
+            </div>
+            <button class="btn primary" type="button" onclick="joinStudy()">Join Study</button>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="metrics">
+            <div class="metric"><div class="k">Credits</div><div class="v">3</div></div>
+            <div class="metric"><div class="k">Rating</div><div class="v">★★★★☆ (42)</div></div>
+            <div class="metric"><div class="k">Estimated time</div><div class="v">20 min</div></div>
+            <div class="metric"><div class="k">Average time</div><div class="v">24 min</div></div>
+          </div>
+
+          <div class="split" style="margin-top:16px;">
+            <div class="panel">
+              <h3>Transparency panel</h3>
+              <p><strong>Question count:</strong> 35</p>
+              <p><strong>Task type:</strong> MCQ + short text</p>
+              <p><strong>Reliability score:</strong> 92%</p>
+              <p><strong>Accessibility:</strong> Keyboard friendly • English required</p>
+              <p class="muted">Shown before joining to reduce mismatch-based dropout.</p>
+            </div>
+
+            <div class="panel">
+              <h3>Completion-time deviation</h3>
+              <p><span class="tag flag">⚑ +20% threshold</span></p>
+              <p class="muted">If average deviates &gt; 20% from estimate, the system flags the study for transparency.</p>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="row" style="justify-content:space-between; align-items:flex-start;">
+            <div>
+              <h2>Optional short summary (consent-based)</h2>
+              <p class="sub">This study measures attention and memory performance using short questions. Your completion time helps improve transparency for future participants.</p>
+            </div>
+            <span class="pill">Researcher can review/edit</span>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="row" style="justify-content:space-between;">
+            <div>
+              <h2>Scheduling</h2>
+              <p class="sub">Book a time slot. The system sends reminders 24 hours and 1 hour before the session.</p>
+            </div>
+            <span class="pill">Reminders: 24h + 1h</span>
+          </div>
+
+          <div class="slots" id="slots">
+            <div class="slot active" onclick="pickSlot(this)"><div>Mon <small>14:00</small></div><div class="pill">Available</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div>Tue <small>10:00</small></div><div class="pill">Available</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div>Wed <small>16:00</small></div><div class="pill">Available</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div>Thu <small>13:00</small></div><div class="pill">Available</div></div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="panel">
+            <h3>Presence Verification</h3>
+            <p class="muted">Participants confirm physical presence by scanning a QR code when arriving at the study session.</p>
+            <button class="btn primary" type="button" onclick="toast('QR scanner activated for check-in')">Scan Check-In Code</button>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="row" style="justify-content:space-between;">
+            <div class="muted" style="font-size:14px;">
+              Credits are awarded <strong>after participation validation</strong>.
+            </div>
+            <button class="btn" type="button" onclick="toast('Validation happens after completion → credits added automatically')">
+              Participation validation
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="researcher">
+        <div class="pagehead">
+          <div>
+            <h1>Researcher Dashboard</h1>
+            <p>Track recruitment progress, compare estimated vs. average completion time, view deviation flags, review feedback, and monitor reliability and recruitment analytics.</p>
+          </div>
+          <span class="tag flag">⚑ Deviation flag</span>
+        </div>
+
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <div>
+              <h2>Memory & Attention Study</h2>
+              <p class="sub">Recruitment progress and study quality signals.</p>
+            </div>
+            <button class="btn primary" type="button" onclick="toast('Study closes automatically when participant limit is reached')">Auto-close enabled</button>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="row" style="justify-content:space-between; align-items:center;">
+            <div style="min-width:0;">
+              <div class="label">Participants</div>
+              <div style="font-size:22px; font-weight:950; letter-spacing:-.4px;">62 / 80</div>
+              <div class="sub">Waitlist activates when full.</div>
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <div class="label">Progress</div>
+              <div class="progress" aria-label="Recruitment progress"><div class="bar"></div></div>
+            </div>
+            <span class="tag flag">⚑ Avg +20%</span>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="metrics">
+            <div class="metric"><div class="k">Estimated time</div><div class="v">20 min</div></div>
+            <div class="metric"><div class="k">Average time</div><div class="v">24 min</div></div>
+            <div class="metric"><div class="k">Question count</div><div class="v">35</div></div>
+            <div class="metric"><div class="k">Task type</div><div class="v">MCQ + short text</div></div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="panel">
+            <h3>Recruitment Analytics</h3>
+            <p><strong>Completion rate:</strong> 87%</p>
+            <p><strong>No-show rate:</strong> 8%</p>
+            <p><strong>Average reliability score:</strong> 91%</p>
+            <p class="muted">These statistics help researchers evaluate participant reliability and study performance.</p>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="split">
+            <div class="panel">
+              <h3>Recent feedback</h3>
+              <p><strong>Emma L.</strong> — “Clear instructions. Timing felt accurate.”</p>
+              <p><strong>Jonas D.</strong> — “A bit longer than expected, but manageable.”</p>
+              <p class="muted">Only verified completers can rate.</p>
+            </div>
+
+            <div class="panel">
+              <h3>Credit history</h3>
+              <p><strong>Credits spent</strong>: 15 (promotion / visibility)</p>
+              <p><strong>Credits earned</strong>: 22 (participation)</p>
+              <p class="muted">Auditable transactions + user-visible history.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="faculty">
+        <div class="pagehead">
+          <div>
+            <h1>Faculty Approvals</h1>
+            <p>Faculty reviews study submissions, checks required fields, accessibility tags, and consent elements, then approves or rejects before publication. Exports support participation reporting.</p>
+          </div>
+          <span class="tag approved">Approval workflow</span>
+        </div>
+
+        <div class="card">
+          <div class="row" style="justify-content:space-between;">
+            <div>
+              <h2>Pending approvals (3)</h2>
+              <p class="sub">Approve → publish. Reject → revise & resubmit.</p>
+            </div>
+            <div class="row">
+              <button class="btn" type="button" onclick="toast('Export: CSV')">Export CSV</button>
+              <button class="btn" type="button" onclick="toast('Export: PDF')">Export PDF</button>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <table class="table" role="table" aria-label="Pending approvals">
+            <thead>
+              <tr>
+                <th>Study</th>
+                <th>Workload transparency</th>
+                <th>Compliance</th>
+                <th style="width:220px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Stress & Sleep Study</strong><br>
+                  <span class="muted">Researcher: Mark Jensen</span>
+                </td>
+                <td>
+                  Estimated: <strong>25 min</strong> • Avg: <strong>29 min</strong><br>
+                  Questions: <strong>50</strong> • Task: <strong>MCQ + short text</strong><br>
+                  Accessibility: <strong>Screen-reader friendly</strong>
+                </td>
+                <td><span class="tag approved">Consent OK</span></td>
+                <td>
+                  <div class="row">
+                    <button class="btn primary" type="button" onclick="toast('Approved → Study published')">Approve</button>
+                    <button class="btn" type="button" onclick="toast('Rejected → Revise & resubmit')">Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <strong>Behavioral Economics Experiment</strong><br>
+                  <span class="muted">Researcher: Amir Fani</span>
+                </td>
+                <td>
+                  Estimated: <strong>30 min</strong> • Avg: <strong>—</strong><br>
+                  Questions: <strong>60</strong> • Task: <strong>MCQ</strong><br>
+                  Accessibility: <strong>Keyboard only supported</strong>
+                </td>
+                <td><span class="tag flag">Needs review</span></td>
+                <td>
+                  <div class="row">
+                    <button class="btn primary" type="button" onclick="toast('Approved → Study published')">Approve</button>
+                    <button class="btn" type="button" onclick="toast('Rejected → Revise & resubmit')">Reject</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <strong>Audio Interview Study</strong><br>
+                  <span class="muted">Researcher: Lina Vermeer</span>
+                </td>
+                <td>
+                  Estimated: <strong>15 min</strong> • Avg: <strong>—</strong><br>
+                  Questions: <strong>12</strong> • Task: <strong>Audio/Video</strong><br>
+                  Accessibility: <strong>Quiet room required</strong>
+                </td>
+                <td><span class="tag rejected">Missing consent</span></td>
+                <td>
+                  <div class="row">
+                    <button class="btn" type="button" onclick="toast('Request revisions: add consent elements')">Request revisions</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const buttons = document.querySelectorAll(".nav button");
+    const screens = document.querySelectorAll(".screen");
+    const toastEl = document.getElementById("toast");
+
+    function go(id){
+      screens.forEach(s => s.classList.toggle("active", s.id === id));
+      buttons.forEach(b => b.classList.toggle("active", b.dataset.screen === id));
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    buttons.forEach(btn => btn.addEventListener("click", () => go(btn.dataset.screen)));
+
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      setTimeout(() => toastEl.classList.remove("show"), 1600);
+    }
+    window.toast = toast;
+    window.go = go;
+
+    function pickSlot(el){
+      document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
+      el.classList.add("active");
+      const label = el.innerText.replace(/\s+/g,' ').trim();
+      toast("Selected slot: " + label);
+    }
+    window.pickSlot = pickSlot;
+
+    function joinStudy(){
+      toast("Joined! Reminder set for 24h + 1h before.");
+      const credits = document.getElementById("creditsVal");
+      credits.textContent = String(parseInt(credits.textContent, 10));
+    }
+    window.joinStudy = joinStudy;
+
+    document.getElementById("notifyBtn").addEventListener("click", () => {
+      toast("Reminders: 24 hours + 1 hour before session");
+    });
+
+    document.getElementById("primaryBtn").addEventListener("click", () => {
+      toast("Create Study → System validation → Faculty approval");
+    });
+
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput){
+      searchInput.addEventListener("input", () => {
+        toast("Filter applied: " + (searchInput.value || "—"));
+      });
+    }
+  </script>
+</body>
+</html>
